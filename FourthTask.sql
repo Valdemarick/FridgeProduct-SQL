@@ -1,4 +1,4 @@
-SELECT Fridges.OwnerName, Products.Name, SUM(Fridges_Products.FridgeId)
-FROM Fridges_Products INNER JOIN Fridges ON Fridges.Id = Fridges_Products.FridgeId
-					  INNER JOIN Products ON Products.Id = Fridges_Products.ProductId
-GROUP BY Fridges.OwnerName, Products.Name;
+SELECT TOP 1 Fridges.OwnerName, COUNT(*) AS CountOfProductName
+FROM Fridges_Products INNER JOIN Fridges ON Fridges_Products.FridgeId = Fridges.Id
+GROUP BY Fridges.OwnerName
+ORDER BY COUNT(*) DESC;
